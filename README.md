@@ -1,4 +1,4 @@
-# QR Code Styling
+# QR Code Styling1
 [![Version](https://img.shields.io/npm/v/qr-code-styling.svg)](https://www.npmjs.org/package/qr-code-styling)
 
 JavaScript library for generating QR codes with a logo and styling.
