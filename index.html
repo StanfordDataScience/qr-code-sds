@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code SDS</title>
     <!-- Load script from your GitHub Pages -->
-    <script src="https://stanforddatascience.github.io/qr-code-sds/qr-code-styler.min.js"></script>
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,7 +32,7 @@
     const qrCodeStyler = new QRCodeStyler({
         width: 300,
         height: 300,
-        image: "https://stanforddatascience.github.io/qr-code-sds/assets/SDS_logo_only_small.png", // Hosted PNG
+        image: "https://stanforddatascience.github.io/qr-code-sds/src/assets/SDS_logo_only_small.png", // Hosted PNG
         dotsOptions: {
             type: "rounded",
             color: "#000",
