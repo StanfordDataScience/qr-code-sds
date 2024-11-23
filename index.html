@@ -1,58 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code SDS</title>
-    <!-- Load script from your GitHub Pages -->
-    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-        }
-        canvas {
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>QR Code Styling</title>
 </head>
 <body>
-<h1>QR Codes for SDS links</h1>
-<input type="text" id="urlInput" placeholder="Enter a URL" style="width: 300px;">
-<button id="generateBtn">Generate QR Code</button>
-<br>
-<canvas id="qrCodeCanvas"></canvas>
-<script>
-    // Initialize QRCodeStyler
-    const qrCodeStyler = new QRCodeStyler({
-        width: 300,
-        height: 300,
-        image: "https://stanforddatascience.github.io/qr-code-sds/src/assets/SDS_logo_only_small.png", // Hosted PNG
-        dotsOptions: {
-            type: "rounded",
-            color: "#000",
-        },
-        cornersSquareOptions: {
-            type: "extra-rounded",
-            color: "#000",
-        },
-    });
+<div id="canvas1"></div>
+<div id="canvas2"></div>
+<div id="canvas3"></div>
+<script type="text/javascript">
+  const options1 = {
+    width: 300,
+    height: 500,
+    type: "svg",
+    data: "https://www.facebook.com/",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    dotsOptions: {
+      color: "#4267b2",
+      type: "rounded",
+      roundSize: false,
+    },
+    backgroundOptions: {
+      color: "#e9ebee",
+    },
+    imageOptions: {
+      crossOrigin: "anonymous",
+      margin: 20
+    }
+  };
+  const options2 = {
+    width: 500,
+    height: 700,
+    type: "svg",
+    data: "h",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    dotsOptions: {
+      type: "extra-rounded",
+      roundSize: false,
 
-    // Generate QR Code on Button Click
-    document.getElementById("generateBtn").addEventListener("click", () => {
-        const url = document.getElementById("urlInput").value;
-        if (url.trim()) {
-            qrCodeStyler.update({ data: url });
-            qrCodeStyler.draw(document.getElementById("qrCodeCanvas"));
-        } else {
-            alert("Please enter a valid URL!");
-        }
-    });
+      gradient: {
+        type: "linear", //radial,
+        rotation: Math.PI / 2,
+        colorStops: [{ offset: 0, color: 'black' }, { offset: 1, color: 'green' }]
+      },
+    },
+    cornersSquareOptions: {
+      type: "rounded",
+      gradient: {
+        type: "linear",
+        rotation: Math.PI / 2,
+        colorStops: [{
+          offset: 0,
+          color: 'black'
+        }, {
+          offset: 1,
+          color: 'red'
+        }]
+      },
+    },
+    cornersDotOptions: {
+      type: "rounded",
+      gradient: {
+        type: "linear",
+        rotation: Math.PI / 2,
+        colorStops: [{
+          offset: 0,
+          color: 'black'
+        }, {
+          offset: 1,
+          color: 'red'
+        }]
+      },
+    },
+    backgroundOptions: {
+      gradient: {
+        type: "linear",
+        rotation: Math.PI / 2,
+        colorStops: [{
+          offset: 0,
+          color: 'white'
+        }, {
+          offset: 1,
+          color: 'red'
+        }]
+      },
+    },
+    imageOptions: {
+      crossOrigin: "anonymous",
+      margin: 30
+    }
+  };
+  const options3 = {
+    width: 500,
+    height: 500,
+    type: "svg",
+    data: "h",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    dotsOptions: {
+      roundSize: false,
+
+      type: "extra-rounded",
+      gradient: {
+        type: "radial", //radial,
+        rotation: Math.PI / 2,
+        colorStops: [{ offset: 0, color: 'black' }, { offset: 1, color: 'green' }]
+      },
+    },
+    cornersSquareOptions: {
+      type: "rounded",
+      gradient: {
+        type: "radial",
+        rotation: Math.PI / 2,
+        colorStops: [{
+          offset: 0,
+          color: 'black'
+        }, {
+          offset: 1,
+          color: 'red'
+        }]
+      },
+    },
+    cornersDotOptions: {
+      type: "rounded",
+      gradient: {
+        type: "radial",
+        rotation: Math.PI / 2,
+        colorStops: [{
+          offset: 0,
+          color: 'black'
+        }, {
+          offset: 1,
+          color: 'red'
+        }]
+      },
+    },
+    backgroundOptions: {
+      gradient: {
+        type: "radial",
+        rotation: Math.PI / 2,
+        colorStops: [{
+          offset: 0,
+          color: 'white'
+        }, {
+          offset: 1,
+          color: 'red'
+        }]
+      },
+    },
+    imageOptions: {
+      crossOrigin: "anonymous",
+      margin: 30
+    }
+  };
+  const qrCode1 = new QRCodeStyling(options1);
+  const qrCode2 = new QRCodeStyling(options2);
+  const qrCode3 = new QRCodeStyling(options3);
+
+  qrCode1.append(document.getElementById("canvas1"));
+  qrCode2.append(document.getElementById("canvas2"));
+  qrCode3.append(document.getElementById("canvas3"));
+
+  // qrCode1.download({ name: 'qr-codes/Vanbilloen'+'-color', extension: 'svg' })
+  // qrCode2.download({ name: 'qr-codes/Vanbilloen'+'-linear', extension: 'svg' })
+  // qrCode3.download({ name: 'qr-codes/Vanbilloen'+'-rounded', extension: 'svg' })
 </script>
 </body>
 </html>
+
