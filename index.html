@@ -42,7 +42,7 @@
             const options = await loadOptions();
 
             // Initialize QRCodeStyler with the loaded options
-            const qrCodeStyler = new QRCodeStyler(options);
+            const qrCodeStyler = new QRCodeStyling(options);
 
             // Add event listener to generate QR code
             document.getElementById("generateBtn").addEventListener("click", () => {
