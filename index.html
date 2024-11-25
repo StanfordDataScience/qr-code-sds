@@ -16,7 +16,7 @@
             margin: 10px;
             font-size: 16px;
         }
-        canvas {
+        #qrCodeContainer {
             margin-top: 20px;
         }
     </style>
@@ -25,8 +25,7 @@
 <h1>QR Code SDS Style</h1>
 <input type="text" id="urlInput" placeholder="Enter a URL" style="width: 300px;">
 <button id="generateBtn">Generate QR Code</button>
-<br>
-<canvas id="qrCodeCanvas"></canvas>
+<div id="qrCodeContainer"></div>
 
 <script>
     async function loadOptions() {
@@ -57,7 +56,11 @@
                 if (url) {
                     // Update the data field with the user-entered URL
                     qrCodeStyler.update({ data: url });
-                    qrCodeStyler.draw(document.getElementById("qrCodeCanvas"));
+
+                    // Clear previous QR code and append the new one
+                    const container = document.getElementById("qrCodeContainer");
+                    container.innerHTML = ""; // Clear previous QR code
+                    qrCodeStyler.append(container);
                 } else {
                     alert("Please enter a valid URL!");
                 }
