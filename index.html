@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code SDS style</title>
+    <title>QR Code SDS Style</title>
     <script src="https://stanforddatascience.github.io/qr-code-sds/lib/qr-code-styling.js"></script>
     <style>
         body {
@@ -14,6 +14,7 @@
         input, button {
             padding: 10px;
             margin: 10px;
+            font-size: 16px;
         }
         canvas {
             margin-top: 20px;
@@ -26,29 +27,35 @@
 <button id="generateBtn">Generate QR Code</button>
 <br>
 <canvas id="qrCodeCanvas"></canvas>
+
 <script>
     async function loadOptions() {
-        // Fetch options.json dynamically
-        const response = await fetch('options.json');
-        if (!response.ok) {
-            throw new Error("Failed to load options.json");
+        try {
+            // Fetch the options.json file dynamically
+            const response = await fetch('options.json');
+            if (!response.ok) {
+                throw new Error("Failed to load options.json");
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching options.json:", error);
+            throw error;
         }
-        return await response.json();
     }
 
     async function initializeQRCodeStyler() {
         try {
-            // Load the pre-defined options
+            // Load the pre-defined options from options.json
             const options = await loadOptions();
 
-            // Initialize QRCodeStyler with the loaded options
+            // Initialize the QR Code Styler with default options
             const qrCodeStyler = new QRCodeStyling(options);
 
-            // Add event listener to generate QR code
+            // Set up the button click event to generate the QR code
             document.getElementById("generateBtn").addEventListener("click", () => {
-                const url = document.getElementById("urlInput").value;
-                if (url.trim()) {
-                    // Update the data field with the user input
+                const url = document.getElementById("urlInput").value.trim();
+                if (url) {
+                    // Update the data field with the user-entered URL
                     qrCodeStyler.update({ data: url });
                     qrCodeStyler.draw(document.getElementById("qrCodeCanvas"));
                 } else {
@@ -61,7 +68,7 @@
     }
 
     // Initialize the QR Code Styler when the page loads
-    initializeQRCodeStyler();
+    document.addEventListener("DOMContentLoaded", initializeQRCodeStyler);
 </script>
 </body>
 </html>
